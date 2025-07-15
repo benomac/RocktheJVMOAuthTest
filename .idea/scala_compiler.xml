@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="separateProdTestSources" value="true" />
+    <profile name="sbt 1" modules="OauthRTJVMDemo,OauthRTJVMDemo.OuthRTJVMDemo,OauthRTJVMDemo.OuthRTJVMDemo.main,OauthRTJVMDemo.OuthRTJVMDemo.test,OauthRTJVMDemo.main,OauthRTJVMDemo.oauth,OauthRTJVMDemo.oauth.main,OauthRTJVMDemo.oauth.test,OauthRTJVMDemo.test" />
+  </component>
+</project>
