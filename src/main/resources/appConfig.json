@@ -1,12 +1,12 @@
 {
   "credentials": [
     {
-      "key": // <your client id for github>,
-      "secret": // <you secret for github?
+      "key": // <your client id for GITHUB>,
+      "secret": // <you secret for GITHUB?
     },
     {
-      "key": // <your client id for google>
-      "secret": // <your secret for google>
+      "key": // <your client id for GOOGLE>
+      "secret": // <your secret for GOOGLE>
     }
   ]
 }
