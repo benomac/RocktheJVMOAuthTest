@@ -22,7 +22,9 @@ Then in sbt run the `OAuthDemo` app. You should then see your links when navigat
 
 The below flow steps were copied from the [Rock the JVM](https://rockthejvm.com/articles/authentication-with-scala-and-http4s-oauth) 
 docs and are referring to the `callback` and `googlecallback` routes in `scala/com/oAuth/OAuthDemo.scala`.
-They may not be completely accurate for the `orycallback` route.
+They may not be completely accurate for the `orycallback` route flow.
+
+
 
 1. When the user tries to log into app1, the user is redirected to an authorization server owned by app2.
 

@@ -3,14 +3,17 @@ package com.oAuth.ory
 import cats.effect.IO
 import org.http4s.client.dsl.io.*
 import org.http4s.Method.*
-import org.http4s.{Headers, MediaType, Method, Request, RequestCookie, Uri, UrlForm}
+import org.http4s.{Headers, MediaType, Method, Request, RequestCookie, Status, Uri, UrlForm}
 import org.http4s.circe.*
 import io.circe.Json
+import org.http4s.client.UnexpectedStatus
 import org.http4s.ember.client.EmberClientBuilder
 import org.http4s.headers.Accept
 import org.http4s.implicits.uri
 
-object oryAuth {
+object OryAuth {
+  case object Unauthorized extends RuntimeException
+  
   def getOryOAuthResult(sessionCookie: RequestCookie): IO[String] =
     val req: Request[IO] = Request[IO](
       Method.GET,
@@ -20,4 +23,7 @@ object oryAuth {
       )
     ).addCookie(sessionCookie)
     EmberClientBuilder.default[IO].build.use(client => client.expect[String](req))
+      .handleErrorWith {
+        case s: UnexpectedStatus if s.status == Status.Unauthorized => IO.raiseError(Unauthorized)
+      }
 }

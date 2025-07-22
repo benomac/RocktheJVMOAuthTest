@@ -13,6 +13,7 @@ serve:
 selfservice:
   default_browser_return_url: http://127.0.0.1:8080/orycallback
   allowed_return_urls:
+    - http://127.0.0.1:8080/orycallback
     - http://127.0.0.1:4455
     - http://localhost:19006/Callback
     - exp://localhost:8081/--/Callback
@@ -36,8 +37,8 @@ selfservice:
         providers:
           - id: google
             provider: google
-            client_id: <your client id>
-            client_secret: <you client secret>
+            client_id: <your id>
+            client_secret: <your secret>
             scope:
               - openid
               - profile
@@ -48,27 +49,27 @@ selfservice:
   flows:
     error:
       ui_url: http://127.0.0.1:4455/error
-#
-#    settings:
-#      ui_url: http://127.0.0.1:4455/settings
-#      privileged_session_max_age: 15m
-#      required_aal: highest_available
-#
-#    recovery:
-#      enabled: true
-#      ui_url: http://127.0.0.1:4455/recovery
-#      use: code
-#
-#    verification:
-#      enabled: true
-#      ui_url: http://127.0.0.1:4455/verification
-#      use: code
-#      after:
-#        default_browser_return_url: http://127.0.0.1:4455/welcome
-#
-#    logout:
-#      after:
-#        default_browser_return_url: http://127.0.0.1:4455/login
+
+    settings:
+      ui_url: http://127.0.0.1:4455/settings
+      privileged_session_max_age: 15m
+      required_aal: highest_available
+
+    recovery:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/recovery
+      use: code
+
+    verification:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/verification
+      use: code
+      after:
+        default_browser_return_url: http://127.0.0.1:4455/welcome
+
+    logout:
+      after:
+        default_browser_return_url: http://127.0.0.1:4455/login
 #
     login:
       ui_url: http://127.0.0.1:4455/login
@@ -78,10 +79,12 @@ selfservice:
       lifespan: 10m
       ui_url: http://127.0.0.1:4455/registration
       after:
+        oidc:  # added this to fix the issue with not logging in straight after registering.
+          hooks:
+            - hook: session
         password:
           hooks:
             - hook: session
-            - hook: show_verification_ui
 
 log:
   level: debug

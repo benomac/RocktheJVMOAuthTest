@@ -6,8 +6,7 @@ import io.circe.Decoder
 
 object ConfigUtils {
   case class Credential(key: String, secret: Secret[String])
-
-  case class AppConfig(credentials: List[Credential])derives Decoder
+  case class AppConfig(credentials: Map[String, Credential]) derives Decoder
 
   given appDecoder: Decoder[Credential] = Decoder.instance { h =>
     for {
